@@ -9,6 +9,6 @@ The data sets used in the paper and code are stored in the `data` folder.
 
 Some of the code chunks in the R Markdown file are computationally intensive to run, so their results are preloaded into `.RData` files in the `output` folder.
 
-Source files for the manuscript can be found in the `manuscript` folder.
+Source files in LaTex for the manuscript can be found in the `manuscript` folder.
 
 The code in this repository is written in R, version 4.3.1. The package `renv` is used to cache the computing environment.
