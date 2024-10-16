@@ -1,0 +1,293 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citeauthoryear{Albert and Chib}{Albert and
+  Chib}{1993}]{albert1993bayesian}
+Albert, J.~H. and S.~Chib (1993).
+\newblock Bayesian analysis of binary and polychotomous response data.
+\newblock {\em Journal of the American Statistical Association\/}~{\em
+  88\/}(422), 669--679.
+
+\bibitem[\protect\citeauthoryear{Andrieu and Doucet}{Andrieu and
+  Doucet}{1999}]{andrieu1999joint}
+Andrieu, C. and A.~Doucet (1999).
+\newblock Joint {B}ayesian model selection and estimation of noisy sinusoids
+  via reversible jump {MCMC}.
+\newblock {\em IEEE Transactions on Signal Processing\/}~{\em 47\/}(10),
+  2667--2676.
+
+\bibitem[\protect\citeauthoryear{Andrieu and Livingstone}{Andrieu and
+  Livingstone}{2019}]{andrieu2019peskun}
+Andrieu, C. and S.~Livingstone (2019).
+\newblock {Peskun-Tierney ordering for Markov chain and process Monte Carlo:
+  beyond the reversible scenario}.
+\newblock arXiv preprint.
+
+\bibitem[\protect\citeauthoryear{Brooks, Giudici, and Roberts}{Brooks
+  et~al.}{2003}]{brooks2003efficient}
+Brooks, S.~P., P.~Giudici, and G.~O. Roberts (2003).
+\newblock {Efficient construction of reversible jump Markov chain Monte Carlo
+  proposal distributions}.
+\newblock {\em Journal of the Royal Statistical Society Series B: Statistical
+  Methodology\/}~{\em 65\/}(1), 3--39.
+
+\bibitem[\protect\citeauthoryear{Caracciolo, Pelissetto, and Sokal}{Caracciolo
+  et~al.}{1992}]{caracciolo1992two}
+Caracciolo, S., A.~Pelissetto, and A.~D. Sokal (1992).
+\newblock Two remarks on simulated tempering.
+\newblock Unpublished manuscript.
+
+\bibitem[\protect\citeauthoryear{Chakraborty and Khare}{Chakraborty and
+  Khare}{2017}]{chakraborty2016convergence}
+Chakraborty, S. and K.~Khare (2017).
+\newblock Convergence properties of {G}ibbs samplers for {B}ayesian probit
+  regression with proper priors.
+\newblock {\em Electronic Journal of Statistics\/}~{\em 11\/}(1), 177--210.
+
+\bibitem[\protect\citeauthoryear{Chevallier, Fearnhead, and Sutton}{Chevallier
+  et~al.}{2023}]{chevallier2022reversible}
+Chevallier, A., P.~Fearnhead, and M.~Sutton (2023).
+\newblock Reversible jump {PDMP} samplers for variable selection.
+\newblock {\em Journal of the American Statistical Association\/}~{\em
+  118\/}(544), 2915--2927.
+
+\bibitem[\protect\citeauthoryear{Chlebicka, {\L}atuszy{\'n}ski, and
+  Miasojedow}{Chlebicka et~al.}{2023}]{chlebicka2023solidarity}
+Chlebicka, I., K.~{\L}atuszy{\'n}ski, and B.~Miasojedow (2023).
+\newblock Solidarity of {G}ibbs samplers: the spectral gap.
+\newblock arXiv preprint.
+
+\bibitem[\protect\citeauthoryear{Choi}{Choi}{2020}]{choi2020metropolis}
+Choi, M.~C. (2020).
+\newblock {Metropolis--Hastings reversiblizations of non-reversible Markov
+  chains}.
+\newblock {\em Stochastic Processes and their Applications\/}~{\em 130\/}(2),
+  1041--1073.
+
+\bibitem[\protect\citeauthoryear{Cornish and Littenberg}{Cornish and
+  Littenberg}{2015}]{cornish2015bayeswave}
+Cornish, N.~J. and T.~B. Littenberg (2015).
+\newblock {Bayeswave: Bayesian inference for gravitational wave bursts and
+  instrument glitches}.
+\newblock {\em Classical and Quantum Gravity\/}~{\em 32\/}(13), 135012.
+
+\bibitem[\protect\citeauthoryear{Ehlers and Brooks}{Ehlers and
+  Brooks}{2002}]{ehlers2002efficient}
+Ehlers, R. and S.~Brooks (2002).
+\newblock Efficient construction of reversible jump {MCMC} proposals for
+  autoregressive time series models.
+\newblock Technical report.
+
+\bibitem[\protect\citeauthoryear{Fill}{Fill}{1991}]{fill1991eigenvalue}
+Fill, J.~A. (1991).
+\newblock Eigenvalue bounds on convergence to stationarity for nonreversible
+  {M}arkov chains, with an application to the exclusion process.
+\newblock {\em Annals of Applied Probability\/}~{\em 1\/}(1), 62--87.
+
+\bibitem[\protect\citeauthoryear{Flegal and Jones}{Flegal and
+  Jones}{2010}]{flegal2010batch}
+Flegal, J.~M. and G.~L. Jones (2010).
+\newblock {Batch means and spectral variance estimators in Markov chain Monte
+  Carlo}.
+\newblock {\em Annals of Statistics\/}~{\em 38\/}(2), 1034--1070.
+
+\bibitem[\protect\citeauthoryear{Gallegos-Herrada, Ledvinka, and
+  Rosenthal}{Gallegos-Herrada et~al.}{2023}]{gallegos2023equivalences}
+Gallegos-Herrada, M.~A., D.~Ledvinka, and J.~S. Rosenthal (2023).
+\newblock {Equivalences of geometric ergodicity of Markov chains}.
+\newblock {\em Journal of Theoretical Probability\/}~{\em 37}, 1230--1256.
+
+\bibitem[\protect\citeauthoryear{Ge, Lee, and Risteski}{Ge
+  et~al.}{2018}]{ge2018simulated}
+Ge, R., H.~Lee, and A.~Risteski (2018).
+\newblock Simulated tempering {L}angevin monte carlo ii: an improved proof
+  using soft {M}arkov chain decomposition.
+\newblock arXiv preprint.
+
+\bibitem[\protect\citeauthoryear{Geyer and M{\o}ller}{Geyer and
+  M{\o}ller}{1994}]{geyer1994simulation}
+Geyer, C.~J. and J.~M{\o}ller (1994).
+\newblock Simulation procedures and likelihood inference for spatial point
+  processes.
+\newblock {\em Scandinavian Journal of Statistics\/}~{\em 21\/}(4), 359--373.
+
+\bibitem[\protect\citeauthoryear{Green}{Green}{1995}]{green1995reversible}
+Green, P.~J. (1995).
+\newblock {Reversible jump Markov chain Monte Carlo computation and Bayesian
+  model determination}.
+\newblock {\em Biometrika\/}~{\em 82\/}(4), 711--732.
+
+\bibitem[\protect\citeauthoryear{Guan and Krone}{Guan and
+  Krone}{2007}]{guan2007small}
+Guan, Y. and S.~M. Krone (2007).
+\newblock {Small-world MCMC and convergence to multi-modal distributions: From
+  slow mixing to fast mixing}.
+\newblock {\em Annals of Applied Probability\/}~{\em 17\/}(1), 284--304.
+
+\bibitem[\protect\citeauthoryear{Hairer}{Hairer}{2006}]{hairer2006ergodic}
+Hairer, M. (2006).
+\newblock {Ergodic properties of Markov processes}.
+\newblock \rm Lecture notes, Univ. Warwick.
+
+\bibitem[\protect\citeauthoryear{Hopkins, Reeber, Forman, and
+  Suermondt}{Hopkins et~al.}{1999}]{misc_spambase_94}
+Hopkins, M., E.~Reeber, G.~Forman, and J.~Suermondt (1999).
+\newblock {Spambase}.
+\newblock UCI Machine Learning Repository.
+\newblock {DOI}: https://doi.org/10.24432/C53G6X.
+
+\bibitem[\protect\citeauthoryear{Jones, Haran, Caffo, and Neath}{Jones
+  et~al.}{2006}]{jones2006fixed}
+Jones, G.~L., M.~Haran, B.~S. Caffo, and R.~Neath (2006).
+\newblock {Fixed-width output analysis for Markov chain Monte Carlo}.
+\newblock {\em Journal of the American Statistical Association\/}~{\em
+  101\/}(476), 1537--1547.
+
+\bibitem[\protect\citeauthoryear{Jones and Hobert}{Jones and
+  Hobert}{2001}]{jones2001honest}
+Jones, G.~L. and J.~P. Hobert (2001).
+\newblock Honest exploration of intractable probability distributions via
+  {M}arkov chain {M}onte {C}arlo.
+\newblock {\em Statistical Science\/}~{\em 16\/}(4), 312--334.
+
+\bibitem[\protect\citeauthoryear{Lawler and Sokal}{Lawler and
+  Sokal}{1988}]{lawler1988bounds}
+Lawler, G.~F. and A.~D. Sokal (1988).
+\newblock Bounds on the $l^2$ spectrum for {M}arkov chains and {M}arkov
+  processes: {A} generalization of {C}heeger’s inequality.
+\newblock {\em Transactions of the American Mathematical Society\/}~{\em
+  309\/}(2), 557--580.
+
+\bibitem[\protect\citeauthoryear{Madras and Randall}{Madras and
+  Randall}{2002}]{madras2002markov}
+Madras, N. and D.~Randall (2002).
+\newblock Markov chain decomposition for convergence rate analysis.
+\newblock {\em Annals of Applied Probability\/}~{\em 12\/}(2), 581--606.
+
+\bibitem[\protect\citeauthoryear{Meyn and Tweedie}{Meyn and
+  Tweedie}{2012}]{meyn2012markov}
+Meyn, S.~P. and R.~L. Tweedie (2012).
+\newblock {\em {Markov Chains and Stochastic Stability}\/} (2nd ed.).
+\newblock Springer Science \& Business Media.
+
+\bibitem[\protect\citeauthoryear{Ortner, Descombes, and Zerubia}{Ortner
+  et~al.}{2006}]{ortner2006reversible}
+Ortner, M., X.~Descombes, and J.~Zerubia (2006).
+\newblock A reversible jump {MCMC} sampler for object detection in image
+  processing.
+\newblock In {\em Monte Carlo and Quasi-Monte Carlo Methods 2004}, pp.\
+  389--401. Springer.
+
+\bibitem[\protect\citeauthoryear{Paulin}{Paulin}{2015}]{paulin2015concentration}
+Paulin, D. (2015).
+\newblock {Concentration inequalities for Markov chains by Marton couplings and
+  spectral methods}.
+\newblock {\em Electronic Journal of Probability\/}~{\em 20\/}(79), 1--32.
+
+\bibitem[\protect\citeauthoryear{Power, Rudolf, Sprungk, and Wang}{Power
+  et~al.}{2024}]{power2024weak}
+Power, S., D.~Rudolf, B.~Sprungk, and A.~Q. Wang (2024).
+\newblock {Weak Poincar{\'e} inequality comparisons for ideal and hybrid slice
+  sampling}.
+\newblock arXiv preprint.
+
+\bibitem[\protect\citeauthoryear{Qin and Jones}{Qin and
+  Jones}{2022}]{qin2020convergence}
+Qin, Q. and G.~L. Jones (2022).
+\newblock {Convergence Rates of Two-Component MCMC Samplers}.
+\newblock {\em Bernoulli\/}~{\em 28}, 859--885.
+
+\bibitem[\protect\citeauthoryear{Richardson and Green}{Richardson and
+  Green}{1997}]{richardson1997bayesian}
+Richardson, S. and P.~J. Green (1997).
+\newblock {On Bayesian analysis of mixtures with an unknown number of
+  components (with discussion)}.
+\newblock {\em Journal of the Royal Statistical Society Series B: Statistical
+  Methodology\/}~{\em 59\/}(4), 731--792.
+
+\bibitem[\protect\citeauthoryear{Roberts and Rosenthal}{Roberts and
+  Rosenthal}{1997}]{roberts1997geometric}
+Roberts, G.~O. and J.~S. Rosenthal (1997).
+\newblock Geometric ergodicity and hybrid {M}arkov chains.
+\newblock {\em Electronic Communications in Probability\/}~{\em 2\/}(2),
+  13--25.
+
+\bibitem[\protect\citeauthoryear{Roberts and Rosenthal}{Roberts and
+  Rosenthal}{2006}]{roberts2006harris}
+Roberts, G.~O. and J.~S. Rosenthal (2006).
+\newblock Harris recurrence of {M}etropolis-within-{G}ibbs and
+  trans-dimensional {M}arkov chains.
+\newblock {\em Annals of Applied Probability\/}~{\em 16\/}(4), 2123--2139.
+
+\bibitem[\protect\citeauthoryear{Roberts and Tweedie}{Roberts and
+  Tweedie}{2001}]{roberts2001geometric}
+Roberts, G.~O. and R.~L. Tweedie (2001).
+\newblock {Geometric $L^2$ and $L^1$ convergence are equivalent for reversible
+  Markov chains}.
+\newblock {\em Journal of Applied Probability\/}~{\em 38\/}(A), 37--41.
+
+\bibitem[\protect\citeauthoryear{Robertson, Flegal, Vats, and Jones}{Robertson
+  et~al.}{2020}]{robertson2020assessing}
+Robertson, N., J.~M. Flegal, D.~Vats, and G.~L. Jones (2020).
+\newblock Assessing and visualizing simultaneous simulation error.
+\newblock {\em Journal of Computational and Graphical Statistics\/}~{\em
+  30\/}(2), 324--334.
+
+\bibitem[\protect\citeauthoryear{Roeder}{Roeder}{1990}]{roeder1990density}
+Roeder, K. (1990).
+\newblock Density estimation with confidence sets exemplified by superclusters
+  and voids in the galaxies.
+\newblock {\em Journal of the American Statistical Association\/}~{\em
+  85\/}(411), 617--624.
+
+\bibitem[\protect\citeauthoryear{Roy and Hobert}{Roy and
+  Hobert}{2007}]{roy2007convergence}
+Roy, V. and J.~P. Hobert (2007).
+\newblock {Convergence rates and asymptotic standard errors for Markov chain
+  Monte Carlo algorithms for Bayesian probit regression}.
+\newblock {\em Journal of the Royal Statistical Society, Series B\/}~{\em
+  69\/}(4), 607--623.
+
+\bibitem[\protect\citeauthoryear{Schreck, Fort, Le~Corff, and Moulines}{Schreck
+  et~al.}{2015}]{schreck2015shrinkage}
+Schreck, A., G.~Fort, S.~Le~Corff, and E.~Moulines (2015).
+\newblock A shrinkage-thresholding {M}etropolis adjusted {L}angevin algorithm
+  for {B}ayesian variable selection.
+\newblock {\em IEEE Journal of Selected Topics in Signal Processing\/}~{\em
+  10\/}(2), 366--375.
+
+\bibitem[\protect\citeauthoryear{Troughton and Godsill}{Troughton and
+  Godsill}{1998}]{troughton1998reversible}
+Troughton, P.~T. and S.~J. Godsill (1998).
+\newblock A reversible jump sampler for autoregressive time series.
+\newblock In {\em Proceedings of the 1998 IEEE International Conference on
+  Acoustics, Speech and Signal Processing, ICASSP'98 (Cat. No. 98CH36181)},
+  Volume~4, pp.\  2257--2260. IEEE.
+
+\bibitem[\protect\citeauthoryear{Vats, Flegal, and Jones}{Vats
+  et~al.}{2019}]{vats2019multivariate}
+Vats, D., J.~M. Flegal, and G.~L. Jones (2019).
+\newblock {Multivariate output analysis for Markov chain Monte Carlo}.
+\newblock {\em Biometrika\/}~{\em 106\/}(2), 321--337.
+
+\bibitem[\protect\citeauthoryear{Vermaak, Andrieu, Doucet, and Godsill}{Vermaak
+  et~al.}{2004}]{vermaak2004reversible}
+Vermaak, J., C.~Andrieu, A.~Doucet, and S.~Godsill (2004).
+\newblock {Reversible jump Markov chain Monte Carlo strategies for Bayesian
+  model selection in autoregressive processes}.
+\newblock {\em Journal of Time Series Analysis\/}~{\em 25\/}(6), 785--809.
+
+\bibitem[\protect\citeauthoryear{Woodard, Schmidler, and Huber}{Woodard
+  et~al.}{2009}]{woodard2009conditions}
+Woodard, D.~B., S.~C. Schmidler, and M.~Huber (2009).
+\newblock Conditions for rapid mixing of parallel and simulated tempering on
+  multimodal distributions.
+\newblock {\em Annals of Applied Probability\/}~{\em 19\/}(1), 617--640.
+
+\bibitem[\protect\citeauthoryear{Zhang, Chan, Wu, and Chen}{Zhang
+  et~al.}{2004}]{zhang2004learning}
+Zhang, Z., K.~L. Chan, Y.~Wu, and C.~Chen (2004).
+\newblock {Learning a multivariate Gaussian mixture model with the reversible
+  jump MCMC algorithm}.
+\newblock {\em Statistics and Computing\/}~{\em 14}, 343--355.
+
+\end{thebibliography}
