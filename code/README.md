@@ -1,5 +1,3 @@
-Please replace the contents of this file with relevant instructions for your repository or remove this file entirely.
+Source code files that contain the core code to implement the method and various utility/auxiliary functions.
 
-This directory would generally contain source code files that contain the core code to implement the method and various utility/auxiliary functions.
-
-Scripts/code files that execute the overall workflow to carry out an analysis and generate results for the manuscript might be placed in the main directory.
+Please run `Reproduce.Rmd` to reproduce the figures and tables in the manuscript. Some computationally intensive code chunks are not evaluated by default, but one can enable the evaluation by setting `eval` to `TRUE` at the begining of the code chunks.
