@@ -8,7 +8,7 @@ output:
 
 # Introduction
 
-
+This R Markdown file serves as a guide for reproducing the results from the paper "Geometric Ergodicity of Trans-dimensional Markov Chain Monte Carlo Algorithms." The knitting process takes several minutes. Code chunks that require significant computation are not evaluated by default, as indicated by "eval=FALSE" at the start of the respective code chunks. Instead, their results are preloaded from the "output" folder. If you wish to run these chunks manually, you can set "eval=TRUE", while disabling the corresponding chunks that load the precomputed results. Be aware that evaluating all code chunks may take several hours.
 
 The following packages are used:
 ```{r message=F, warning=F}
@@ -173,7 +173,7 @@ r <- ncol(X)-1
 
 The chain can be simulated using the code below. 
 
-```{r}
+```{r eval=FALSE}
 # prior specification
 p <- 1/2
 sigma <- 100
@@ -191,6 +191,10 @@ chain.probit <- probit.mcmc(chainlength=chainlen, k.ini, a.ini, b.ini,
                       p, sigma, jumppar=1/3)
 ```
 
+To save time, we do not run the above code chunk. Instead, a copy of the simulated chain is pulled from the "output" folder.
+```{r}
+load(file="../output/chain.probit.RData")
+```
 
 Next, we construct simultaneous confidence intervals for the posterior probability of each feature.
 
@@ -278,13 +282,18 @@ myalpha0 <- 2
 mykini <- rbinom(1,mykmax, 0.5)
 mylength <- 1e5
 ```
-```{r}
+```{r, eval=F}
 # chain simulation:
 mymixchain <- mixRJMCMC(mylength, galaxy, mymu0, tau0=mytau0, mya0, b0=myb0, alpha0=myalpha0, mypk,
                         mykini, sample(seq(1,mykini),length(galaxy),replace=T), rep(1/mykini,mykini), rep(1,mykini), rep(0,mykini),
                         jumppar=1/3)
 ```
 
+We do run the above code chunk to save time. Instead, we load a copy of the simulated chain.
+
+```{r}
+load(file="../output/chain.mix.RData")
+```
 
 We can use the simulation output to predict the density function of the data set.
 
@@ -360,12 +369,17 @@ source("functions_supp_I_E.R", local = knitr::knit_global())
 ```
 
 The following code chunk reproduces Table A in the supplement.
-```{r}
+```{r eval=F}
 set.seed(11)
 coverage.rate.1 <- get.coverage.rate(5e3,trialrep=1000,c(0.1,0.05),10,15)
 coverage.rate.2 <- get.coverage.rate(5e4,trialrep=1000,c(0.1,0.05),10,15)
 ```
 
+To save time, we will instead load the result from the file "coverage.rates.RData".
+
+```{r Table A}
+load("../output/coverage.rates.RData")
+```
 
 The empirical probabilities in Table A can be found in the following table.
 ```{r}
@@ -426,7 +440,7 @@ tau.ini <- rexp(1,1)
 
 The following code chunk simulates the chain.
 # Markov chain simulation
-```{r}
+```{r eval=F}
 set.seed(12)
 chainlen <- 4e5
 chain1 <- robust.mcmc(chainlen, k.ini, a.ini, b.ini, tau.ini,
@@ -434,7 +448,10 @@ chain1 <- robust.mcmc(chainlen, k.ini, a.ini, b.ini, tau.ini,
                       jumppar = 1/3, silent = FALSE)
 ```
 
-
+To save time, a copy of the simulated chain is loaded.
+```{r}
+load("../output/chain.robust.RData")
+```
 
 
 We then calculate the confidence intervals for the model order $k$ based on the simulation output. Note that we use the functions in "functions_uncertainty.R".
