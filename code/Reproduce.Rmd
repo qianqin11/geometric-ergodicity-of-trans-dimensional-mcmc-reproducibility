@@ -1,0 +1,463 @@
+---
+title: "Reproducing results in 'Geometric ergodicity of trans-dimensional Markov
+  chain Monte Carlo algorithms'"
+output: 
+  html_document:
+    df_print: paged
+---
+
+# Introduction
+
+
+
+The following packages are used:
+```{r message=F, warning=F}
+library(LaplacesDemon)
+library(ggplot2)
+library(mvtnorm)
+library(statmod)
+library(truncnorm)
+library(dplyr)
+library(patchwork)
+library(MASS)
+```
+
+# Section 4.1
+
+## First plot in Figure 1
+
+Let $k_{\scriptsize\mbox{max}} = 15$, and let $n = 5, 10, ..., 40$. Below we calculate the true values and bounds for $\|P\|_{\Pi}$. We will rely on functions in the file "functions_4_1.R".
+
+```{r}
+source("functions_4_1.R", local = knitr::knit_global())
+```
+
+$\|P\|_{\Pi}$ and its bound are calculated below. Note that $k_{\scriptsize\mbox{max}}$ is called "kmax", and $n$ is called "Zksize".
+```{r Figure 1-1}
+kmax <- 15
+# num.points gives the number of Zksize values that will be studied.
+num.points <- 8
+# For each kmax and Zksize, there are 6 configurations for the myGl/myLo combination. "myGl" gives the global move type, and can be fast or slow; "myLo" gives the local move type, and can be fast, slow, or varied.
+Zksize.seq <- Gl.seq <- Lo.seq <- truth.seq <- bound.seq <- rep(0,6*num.points)
+
+for (myGl in 1:2) {
+  for (myLo in 1:3) {
+    for (i in 1:num.points) {
+      index <- (myGl-1)*3*num.points + (myLo-1)*num.points + i
+      Zksize.seq[index] <- 5*i
+      Gl.seq[index] <- c("fast","slow")[myGl]
+      Lo.seq[index] <- c("fast","slow","varied")[myLo]
+      temp <- getbound(kmax,5*i,c("fast","slow")[myGl],c("fast","slow","varied")[myLo],F)
+
+      # The truth and the bounds are in terms of $1 - \|P\|_{\Pi}$.
+      truth.seq[index] <- temp$truth
+      bound.seq[index] <- temp$bound
+    }
+  }
+}
+
+df.numeric.Zksize <- data.frame(Zksize=Zksize.seq, Global=Gl.seq, Local=Lo.seq, truth=truth.seq, bound=bound.seq)
+```
+
+
+Plotting the result gives the first plot in Figure 1 of the manuscript.
+
+```{r}
+p.numeric.Zksize <- ggplot(data=df.numeric.Zksize, aes(x=Zksize, y=truth/bound, group=interaction(Global,Local))) +
+  theme_minimal() + geom_line(aes(linetype=Global)) + geom_point(aes(shape=Local)) +
+  labs(x="n", y="ratio") + ylim(0,100) + theme(legend.position="none")
+
+p.numeric.Zksize
+```
+
+
+## Second plot in Figure 1
+
+Let $k_{\scriptsize\mbox{max}} = 5, 10, ..., 40$, and let $n = 15$. We calculate the true values and bounds for $\|P\|_{\Pi}$. The relevant code chunk is hidden to save space.
+
+```{r Figrue 1-2, echo = FALSE}
+Zksize <- 15
+num.points <- 8
+kmax.seq <- Gl.seq <- Lo.seq <- truth.seq <- bound.seq <- rep(0,6*num.points)
+
+for (myGl in 1:2) {
+  for (myLo in 1:3) {
+    for (i in 1:num.points) {
+      index <- (myGl-1)*3*num.points + (myLo-1)*num.points + i
+      kmax.seq[index] <- 5*i
+      Gl.seq[index] <- c("fast","slow")[myGl]
+      Lo.seq[index] <- c("fast","slow","varied")[myLo]
+      temp <- getbound(kmax.seq[index],Zksize,c("fast","slow")[myGl],c("fast","slow","varied")[myLo],F)
+      truth.seq[index] <- temp$truth
+      bound.seq[index] <- temp$bound
+    }
+  }
+}
+
+df.numeric.kmax <- data.frame(kmax=kmax.seq, Global=Gl.seq, Local=Lo.seq, truth=truth.seq, bound=bound.seq)
+```
+
+Plotting the result gives the second plot in Figure 1 of the manuscript.
+
+```{r echo = FALSE}
+p.numeric.kmax <- ggplot(data=df.numeric.kmax, aes(x=kmax, y=truth/bound, group=interaction(Global,Local))) +
+  theme_minimal() + geom_line(aes(linetype=Global)) + geom_point(aes(shape=Local)) +
+  labs(x=expression(k[max]),y=element_blank()) + ylim(0,175) + theme(legend.position="none")
+
+p.numeric.kmax
+```
+
+
+## Third plot in Figure 1
+
+This plot compares the bounds on $1-\|P\|_{\Pi}$ produced by equations (6) and (7) in the manuscript. et $k_{\scriptsize\mbox{max}} = 5, 10, ..., 40$, and let $n = 15$. We calculate the bounds for $\|P\|_{\Pi}$ via the two equations.
+
+```{r Figure 1-3, echo = FALSE}
+Zksize <- 15
+num.points <- 8
+kmax.seq <- Zksize.seq <- Gl.seq <- Lo.seq <- bound.nonrev.seq <- bound.rev.seq <- rep(0,6*num.points)
+for (myGl in 1:2) {
+  for (myLo in 1:3) {
+    for (i in 1:num.points) {
+      index <- (myGl-1)*3*num.points + (myLo-1)*num.points + i
+      kmax.seq[index] <- 5*i
+      Zksize.seq[index] <- Zksize
+      Gl.seq[index] <- c("fast","slow")[myGl]
+      Lo.seq[index] <- c("fast","slow","varied")[myLo]
+      temp <- getbound(kmax.seq[index],Zksize.seq[index],c("fast","slow")[myGl],c("fast","slow","varied")[myLo],F)
+      bound.nonrev.seq[index] <- temp$bound
+      temp <- getbound(kmax.seq[index],Zksize.seq[index],c("fast","slow")[myGl],c("fast","slow","varied")[myLo],T)
+      bound.rev.seq[index] <- temp$bound
+    }
+  }
+}
+
+df.numeric.rev <- data.frame(kmax=kmax.seq, Zksize=Zksize.seq, Global=Gl.seq, Local=Lo.seq, bound.nonrev=bound.nonrev.seq, bound.rev=bound.rev.seq)
+```
+
+Plotting the result gives the third plot in Figure 1.
+```{r echo = FALSE}
+p.numeric.rev <- ggplot(data=df.numeric.rev, aes(x=kmax, y=bound.nonrev/bound.rev, group=interaction(Global,Local))) +
+  theme_minimal() + geom_line(aes(linetype=Global)) + geom_point(aes(shape=Local)) +
+  labs(x=expression(k[max]), y=element_blank()) + ylim(0,1)
+p.numeric.rev
+```
+
+# Section 4.2
+
+In this section, we generate Figure 2 in Section 4.2.4 of the manuscript.
+
+We rely on functions in the file "functions_4_2.R". These functions allow us to generate a reversible jump chain for the Bayesian probit model.
+
+```{r}
+source("functions_4_2.R", local = knitr::knit_global())
+```
+
+We will also rely on functions in the file "funcions_uncertainty.R". These functions allow us to construct simultaneous confidence intervals for posterior means.
+
+```{r}
+source("functions_uncertainty.R", local = knitr::knit_global())
+```
+
+The posterior distribution is calculated based on the "spambase" data set.
+
+```{r}
+spambase <- read.csv("../data/spambase.csv", header = F)
+
+# Store the response and features in vectors and matrices:
+y <- spambase$V58
+X <- data.matrix(spambase)
+X <- cbind(rep(1, length(y)), X[,1:57])
+r <- ncol(X)-1
+```
+
+The chain can be simulated using the code below. 
+
+```{r}
+# prior specification
+p <- 1/2
+sigma <- 100
+
+# Markov chain initialization
+set.seed(11)
+k.ini <- rbinom(r,1,0.5)
+a.ini <- rnorm(1,0,1)
+b.ini <- rnorm(r,0,1)*k.ini
+
+set.seed(12)
+chainlen <- 1e5
+chain.probit <- probit.mcmc(chainlength=chainlen, k.ini, a.ini, b.ini,
+                      X, y, 
+                      p, sigma, jumppar=1/3)
+```
+
+
+Next, we construct simultaneous confidence intervals for the posterior probability of each feature.
+
+```{r Figure 2}
+chain.probit.length <- length(chain.probit$a)
+kvar.probit <- batchmeans(chain.probit$k)
+kmean.probit <- apply(X=chain.probit$k, MARGIN=2, FUN=mean)
+
+
+interval.probit <- get.intervals(0.05, kmean.probit, kvar.probit, chain.probit.length, adjusted=T)
+```
+
+The following produces Figure 2 in the manuscript.
+
+```{r}
+# Putting the confidence intervals into a dataframe:
+df.probit <- as.data.frame(interval.probit)
+df.probit$variable <- c("word_freq_make", "word_freq_address", "word_freq_all",
+                   "word_freq_3d", "word_freq_our", "word_freq_over",
+                   "word_freq_remove", "word_freq_internet", "word_freq_order",
+                   "word_freq_mail", "word_freq_receive", "word_freq_will",
+                   "word_freq_people", "word_freq_report", "word_freq_addresses",
+                   "word_freq_free", "word_freq_business", "word_freq_email",
+                   "word_freq_you", "word_freq_credit", "word_freq_your",
+                   "word_freq_font", "word_freq_000", "word_freq_money",
+                   "word_freq_hp", "word_freq_hpl", "word_freq_george",
+                   "word_freq_650", "word_freq_lab", "word_freq_labs",
+                   "word_freq_telnet", "word_freq_857", "word_freq_data",
+                   "word_freq_415", "word_freq_85", "word_freq_technology",
+                   "word_freq_1999", "word_freq_parts", "word_freq_pm",
+                   "word_freq_direct", "word_freq_cs", "word_freq_meeting",
+                   "word_freq_original", "word_freq_project", "word_freq_re",
+                   "word_freq_edu", "word_freq_table", "word_freq_conference",
+                   "char_freq_;", "char_freq_(", "char_freq_[",
+                   "char_freq_!", "char_freq_$", "char_freq_#",
+                   "capital_run_length_average", "capital_run_length_longest", "capital_run_length_total")
+
+names(df.probit) <- c( "left", "frequency", "right", "predictor")
+df.probit$predictor <- factor(df.probit$predictor, levels = df.probit$predictor)
+
+# We will only look at the first 10 features:
+df.probit.subset <- slice_tail(df.probit, n=10)
+df.probit.subset$predictor <- factor(df.probit.subset$predictor, levels = df.probit.subset$predictor)
+
+# Reproduces Figure 2.
+p.probit.subset <- ggplot(data = df.probit.subset, aes(x = predictor, y = frequency)) + 
+  geom_bar(stat="identity", fill = "grey") + 
+  geom_errorbar(aes(x = predictor, ymin=left, ymax=right ), color="dimgrey") +
+  scale_x_discrete(limits=rev(levels(df.probit.subset$predictor))) +
+  scale_y_continuous(expand = c(0, 0), limits = c(-0.03, 1.03)) +
+  theme_minimal()+coord_flip()
+p.probit.subset
+
+```
+
+
+# Section 4.3
+
+In this section, we generate Figure 3 in Section 4.3 of the manuscript.
+
+The code for simulating the Markov chain for the Bayesian Gaussian mixture model can be found in "functions_4_3.R".
+
+```{r}
+source("functions_4_3.R", local = knitr::knit_global())
+```
+
+The data set analyzed is the "galaxies" data set in the "MASS" package. Note that one of the numbers in the data set is incorrect; see Roeder's 1990 paper " Density estimation with confidence sets exemplified by superclusters and voids in the galaxies".
+
+```{r}
+galaxy <- galaxies/1000
+galaxy[78] <- 26.96
+```
+
+The following code chunk can be used to simulate the chain.
+```{r}
+# Initialization and hyperparameter specification:
+set.seed(12)
+mykmax <- 30
+mypk <- 1/2^seq(1:mykmax)
+mymu0 <- 20
+mytau0 <- 1000
+mya0 <- 3
+myb0 <- 2
+myalpha0 <- 2
+mykini <- rbinom(1,mykmax, 0.5)
+mylength <- 1e5
+```
+```{r}
+# chain simulation:
+mymixchain <- mixRJMCMC(mylength, galaxy, mymu0, tau0=mytau0, mya0, b0=myb0, alpha0=myalpha0, mypk,
+                        mykini, sample(seq(1,mykini),length(galaxy),replace=T), rep(1/mykini,mykini), rep(1,mykini), rep(0,mykini),
+                        jumppar=1/3)
+```
+
+
+We can use the simulation output to predict the density function of the data set.
+
+```{r Figure 3}
+# calculate predicted density
+y.axis <- seq(5, 40, 0.2)
+density.pred <- rep(0, length(y.axis))
+for (t in 1:mylength) {
+  for (j in 1:length(y.axis)) {
+    density.pred[j] <- density.pred[j] + sum(mymixchain$w[t,]*
+                                               dnorm(y.axis[j], mymixchain$mu[t,], sqrt(mymixchain$tau[t,])+1e-20) )
+  }
+}
+
+density.pred <- density.pred/mylength
+
+
+df.mixture.1 <- data.frame(x=galaxy)
+df.mixture.2 <- data.frame(x=y.axis, density=density.pred)
+```
+
+Now we can reproduce the four plots in Figure 3.
+
+```{r}
+df.mixture.chain <- data.frame(t=1:mylength, k=mymixchain$k[1:mylength])
+# the chain when K(t)=5:
+df.mixture.chain.5 <- data.frame(t=1:length(which(mymixchain$k==5)),
+                                 u=mymixchain$mu[which(mymixchain$k==5),2])
+
+# first plot: trace plot of K(t)
+p.mix.trace.k <- ggplot(df.mixture.chain, aes(x=t, y=k)) + geom_line() + labs(y="K(t)") +
+  scale_y_continuous(breaks=c(4,8,12))
+p.mix.trace.k
+
+# second plot: trace plot of U2(t) when K(t) = 5.
+p.mix.trace.u <- ggplot(df.mixture.chain.5, aes(x=t, y=u)) + geom_line() + labs(y=expression(U[2](t)))
+p.mix.trace.u
+
+# third plot: predicted density with histogram
+p.mix.density <- ggplot(df.mixture.1, aes(x = x, y=after_stat(density))) +
+  geom_histogram(colour = "grey", fill = "lightgrey", binwidth=1) + theme_minimal() +
+  geom_line(data=df.mixture.2, aes(x,density))
+p.mix.density
+
+# fourth plot: get confidence intervals for the posterior probabilities of K
+chain.mixture.length <- length(mymixchain$k)
+mixture.kind <- matrix(rep(0,chain.mixture.length*30), ncol=30)
+for (i in 1:chain.mixture.length) {
+  mixture.kind[i,mymixchain$k[i]] <- 1
+}
+kvar.mixture<- batchmeans(mixture.kind)
+kmean.mixture <- apply(X=mixture.kind, MARGIN=2, FUN=mean)
+intervals.mixture <- get.intervals(0.05, kmean.mixture, kvar.mixture, chain.mixture.length, adjusted=T)
+df.mixture.k <- as.data.frame(intervals.mixture)
+df.mixture.k$k <- seq(1,30)
+names(df.mixture.k) <- c( "left", "frequency", "right", "k")
+
+p.mix.k <- ggplot(data = df.mixture.k, aes(x = k, y = frequency)) +
+  geom_bar(stat="identity", fill = "grey") +
+  geom_errorbar(aes(x = k, ymin=left, ymax=right ), color="dimgrey") +
+  scale_y_continuous(expand = c(0, 0), limits = c(-0.03, 0.43)) +
+  theme_minimal()
+p.mix.k
+```
+
+
+# Supplement I-E
+This section contains the code for reproducin Table A in Section E of Supplement I. In this section, we compute the empirical coverage probability for a toy MCMC algorithm.
+
+Some functions from "functions_supp_I_E.R" are needed. The file contains a function that simulates the toy chain, and a function "get.coverage.rate" that calculates the empirical coverage rates through repeated simulations.
+```{r}
+source("functions_supp_I_E.R", local = knitr::knit_global())
+```
+
+The following code chunk reproduces Table A in the supplement.
+```{r}
+set.seed(11)
+coverage.rate.1 <- get.coverage.rate(5e3,trialrep=1000,c(0.1,0.05),10,15)
+coverage.rate.2 <- get.coverage.rate(5e4,trialrep=1000,c(0.1,0.05),10,15)
+```
+
+
+The empirical probabilities in Table A can be found in the following table.
+```{r}
+coverage.rate.1
+coverage.rate.2
+```
+
+# Supplement II
+
+This section reproduces Figure a in Supplement II. A reversible jump algorithm for Bayesian robust autoregression is be simulated, and confidence intervals will be constructed for the posterior probability of each model order.
+
+Functions for simulating the chain are given in the file "functions_supp_II.R".
+```{r}
+source("functions_supp_II.R", local = knitr::knit_global())
+```
+
+We use a simulated data set to form the posterior. The hyperparameters and initialization for the chain are also given.
+```{r}
+# simulated data
+set.seed(11)
+myn <- 100
+myp <- 50
+k.true <- 4
+kappa <- 10 # max of k
+b.true <- rnorm(myp, 0, 1)
+# a.true <- c(0.3,0.05,0.05,0.05)
+a.true <- c(0.3,0.25,0.05,0.05)
+tau.true <- 1
+myX <- matrix(rnorm(myn*myp, 0, 1), ncol=myp)
+myy.start <- rnorm(kappa, 0, 1)
+myy <- rep(0, myn)
+myy.full <- c(myy.start, myy)
+
+for (i in 1:myn) {
+  myy.full[i+kappa] <- sum(myX[i,] * b.true)
+  for (k in 1:k.true) {
+    myy.full[i+kappa] <- myy.full[i+kappa] + a.true[k]*myy.full[i+kappa-k]
+  }
+  myy.full[i+kappa] <- myy.full[i+kappa] + sqrt((1/rgamma(1,1,1/8)))*rnorm(1,0,sqrt(tau.true))
+}
+
+myy <- myy.full[(kappa+1):(myn+kappa)]
+
+# Prior specification
+myprior.scale = 5
+lambda <- 1
+myprior.k <- dpois(0:kappa, lambda)/ppois(kappa, lambda)
+
+# Markov chain initialization
+set.seed(11)
+k.ini <- 10
+if (k.ini == 0) {a.ini <- 0} else {
+  a.ini <- rnorm(k.ini, 0, 1)
+}
+b.ini <- rnorm(myp,0,1)
+tau.ini <- rexp(1,1)
+```
+
+The following code chunk simulates the chain.
+# Markov chain simulation
+```{r}
+set.seed(12)
+chainlen <- 4e5
+chain1 <- robust.mcmc(chainlen, k.ini, a.ini, b.ini, tau.ini,
+                      myX, myy, myy.start, myprior.k, prior.a = 1, myprior.scale,
+                      jumppar = 1/3, silent = FALSE)
+```
+
+
+
+
+We then calculate the confidence intervals for the model order $k$ based on the simulation output. Note that we use the functions in "functions_uncertainty.R".
+```{r Figure a}
+chainlen <- length(chain1$k)-1
+chain1quantities <- matrix(rep(0, 11*(chainlen+1)), ncol = 11)
+for (j in 1:11) {
+  chain1quantities[,j] <- as.numeric(chain1$k == j-1)
+}
+chain1means <- apply(chain1quantities, 2, mean)
+chain1var <- batchmeans(chain1quantities)
+chain1intervals <- get.intervals(0.05, chain1means, chain1var, chainlen, adjusted=T)
+df.robust <- as.data.frame(chain1intervals)
+names(df.robust) <- c("left", "frequency", "right")
+df.robust$k <- as.character(seq(0,10))
+df.robust$k <- factor(df.robust$k, levels=df.robust$k)
+```
+
+The following code reproduces Figure a in Supplement II.
+```{r}
+hist.robust <- ggplot(data = df.robust, aes(x = k, y = frequency)) + 
+  geom_bar(stat="identity", fill = "grey") + 
+  geom_errorbar(aes(x = k, ymin=left, ymax=right ), color="dimgrey") +
+  theme_minimal() 
+hist.robust
+```
