@@ -1632,12 +1632,12 @@ algorithms’</h1>
 from the paper “Geometric Ergodicity of Trans-dimensional Markov Chain
 Monte Carlo Algorithms.” The knitting process takes several minutes.
 Code chunks that require significant computation are not evaluated by
-default, as indicated by “eval=FALSE” at the start of the respective
-code chunks. Instead, their results are preloaded from the “output”
-folder. If you wish to run these chunks manually, you can set
-“eval=TRUE”, while disabling the corresponding chunks that load the
-precomputed results. Be aware that evaluating all code chunks may take
-several hours.</p>
+default, as indicated by <code>eval=FALSE</code> at the start of the
+respective code chunks. Instead, their results are preloaded from the
+“output” folder. If you wish to run these chunks manually, you can set
+<code>eval=TRUE</code>, while disabling the corresponding chunks that
+load the precomputed results. Be aware that evaluating all code chunks
+may take several hours.</p>
 <p>The following packages are used:</p>
 <pre class="r"><code>library(LaplacesDemon)
 library(ggplot2)
@@ -1659,8 +1659,8 @@ the file “functions_4_1.R”.</p>
 <pre class="r"><code>source(&quot;functions_4_1.R&quot;, local = knitr::knit_global())</code></pre>
 <p><span class="math inline">\(\|P\|_{\Pi}\)</span> and its bound are
 calculated below. Note that <span class="math inline">\(k_{\scriptsize\mbox{max}}\)</span> is called
-“kmax”, and <span class="math inline">\(n\)</span> is called
-“Zksize”.</p>
+<code>kmax</code>, and <span class="math inline">\(n\)</span> is called
+<code>Zksize</code>.</p>
 <pre class="r"><code>kmax &lt;- 15
 # num.points gives the number of Zksize values that will be studied.
 num.points &lt;- 8
@@ -1724,7 +1724,7 @@ manuscript.</p>
 <div id="third-plot-in-figure-1" class="section level2">
 <h2>Third plot in Figure 1</h2>
 <p>This plot compares the bounds on <span class="math inline">\(1-\|P\|_{\Pi}\)</span> produced by equations (4)
-and (5) in the manuscript. et <span class="math inline">\(k_{\scriptsize\mbox{max}} = 5, 10, ...,
+and (5) in the manuscript. Let <span class="math inline">\(k_{\scriptsize\mbox{max}} = 5, 10, ...,
 40\)</span>, and let <span class="math inline">\(n = 15\)</span>. We
 calculate the bounds for <span class="math inline">\(\|P\|_{\Pi}\)</span> via the two equations.</p>
 <pre class="r"><code>Zksize &lt;- 15
@@ -1848,8 +1848,8 @@ mixture model can be found in “functions_4_3.R”.</p>
 <pre class="r"><code>source(&quot;functions_4_3.R&quot;, local = knitr::knit_global())</code></pre>
 <p>The data set analyzed is the “galaxies” data set in the “MASS”
 package. Note that one of the numbers in the data set is incorrect; see
-Roeder’s 1990 paper ” Density estimation with confidence sets
-exemplified by superclusters and voids in the galaxies”.</p>
+Roeder’s 1990 paper “Density estimation with confidence sets exemplified
+by superclusters and voids in the galaxies.”</p>
 <pre class="r"><code>galaxy &lt;- galaxies/1000
 galaxy[78] &lt;- 26.96</code></pre>
 <p>The following code chunk can be used to simulate the chain.</p>
@@ -1937,8 +1937,8 @@ Supplement I. In this section, we compute the empirical coverage
 probability for a toy MCMC algorithm.</p>
 <p>Some functions from “functions_supp_I_E.R” are needed. The file
 contains a function that simulates the toy chain, and a function
-“get.coverage.rate” that calculates the empirical coverage rates through
-repeated simulations.</p>
+<code>get.coverage.rate</code> that calculates the empirical coverage
+rates through repeated simulations.</p>
 <pre class="r"><code>source(&quot;functions_supp_I_E.R&quot;, local = knitr::knit_global())</code></pre>
 <p>The following code chunk reproduces Table A in the supplement.</p>
 <pre class="r"><code>set.seed(11)
@@ -2024,7 +2024,7 @@ chain1.k &lt;- chain1$k</code></pre>
 of a copy of the simulated chain is loaded.</p>
 <pre class="r"><code>load(&quot;../output/chain.robust.RData&quot;)</code></pre>
 <p>We then calculate the confidence intervals for the model order <span class="math inline">\(k\)</span> based on the simulation output. Note
-that we use the functions in “functions_uncertainty.R”.</p>
+that we use the functions in <code>functions_uncertainty.R</code>.</p>
 <pre class="r"><code>chainlen &lt;- length(chain1.k)-1
 chain1quantities &lt;- matrix(rep(0, 11*(chainlen+1)), ncol = 11)
 for (j in 1:11) {
