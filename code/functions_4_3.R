@@ -55,8 +55,7 @@ mixRJMCMC <- function(chainlength, y, mu0, tau0, a0, b0, alpha0, pk,
   
   # simulation:
   for (t in 1:(chainlength-1)) {
-    if((t+1) %% 1e3==0) print(t+1)
-    
+
     if (kchain[t] == 1) {
       qB <- jumppar*min(1, pk[2]/pk[1])
       qD <- 0

@@ -73,9 +73,9 @@ p.numeric.Zksize
 
 ## Second plot in Figure 1
 
-Let $k_{\scriptsize\mbox{max}} = 5, 10, ..., 40$, and let $n = 15$. We calculate the true values and bounds for $\|P\|_{\Pi}$. The relevant code chunk is hidden to save space.
+Let $k_{\scriptsize\mbox{max}} = 5, 10, ..., 40$, and let $n = 15$. We calculate the true values and bounds for $\|P\|_{\Pi}$ using the code below.
 
-```{r Figrue 1-2, echo = FALSE}
+```{r Figrue 1-2}
 Zksize <- 15
 num.points <- 8
 kmax.seq <- Gl.seq <- Lo.seq <- truth.seq <- bound.seq <- rep(0,6*num.points)
@@ -110,9 +110,9 @@ p.numeric.kmax
 
 ## Third plot in Figure 1
 
-This plot compares the bounds on $1-\|P\|_{\Pi}$ produced by equations (6) and (7) in the manuscript. et $k_{\scriptsize\mbox{max}} = 5, 10, ..., 40$, and let $n = 15$. We calculate the bounds for $\|P\|_{\Pi}$ via the two equations.
+This plot compares the bounds on $1-\|P\|_{\Pi}$ produced by equations (4) and (5) in the manuscript. et $k_{\scriptsize\mbox{max}} = 5, 10, ..., 40$, and let $n = 15$. We calculate the bounds for $\|P\|_{\Pi}$ via the two equations.
 
-```{r Figure 1-3, echo = FALSE}
+```{r Figure 1-3}
 Zksize <- 15
 num.points <- 8
 kmax.seq <- Zksize.seq <- Gl.seq <- Lo.seq <- bound.nonrev.seq <- bound.rev.seq <- rep(0,6*num.points)
@@ -125,9 +125,9 @@ for (myGl in 1:2) {
       Gl.seq[index] <- c("fast","slow")[myGl]
       Lo.seq[index] <- c("fast","slow","varied")[myLo]
       temp <- getbound(kmax.seq[index],Zksize.seq[index],c("fast","slow")[myGl],c("fast","slow","varied")[myLo],F)
-      bound.nonrev.seq[index] <- temp$bound
+      bound.nonrev.seq[index] <- temp$bound # bound based on (4)
       temp <- getbound(kmax.seq[index],Zksize.seq[index],c("fast","slow")[myGl],c("fast","slow","varied")[myLo],T)
-      bound.rev.seq[index] <- temp$bound
+      bound.rev.seq[index] <- temp$bound # bound based on (5)
     }
   }
 }
@@ -438,14 +438,15 @@ b.ini <- rnorm(myp,0,1)
 tau.ini <- rexp(1,1)
 ```
 
-The following code chunk simulates the chain.
+The following code chunk simulates the chain. We only need the component $K(t)$.
 # Markov chain simulation
 ```{r eval=F}
 set.seed(12)
 chainlen <- 4e5
 chain1 <- robust.mcmc(chainlen, k.ini, a.ini, b.ini, tau.ini,
                       myX, myy, myy.start, myprior.k, prior.a = 1, myprior.scale,
-                      jumppar = 1/3, silent = FALSE)
+                      jumppar = 1/3)
+chain1.k <- chain1$k
 ```
 
 To save time, a copy of the simulated chain is loaded.
@@ -456,10 +457,10 @@ load("../output/chain.robust.RData")
 
 We then calculate the confidence intervals for the model order $k$ based on the simulation output. Note that we use the functions in "functions_uncertainty.R".
 ```{r Figure a}
-chainlen <- length(chain1$k)-1
+chainlen <- length(chain1.k)-1
 chain1quantities <- matrix(rep(0, 11*(chainlen+1)), ncol = 11)
 for (j in 1:11) {
-  chain1quantities[,j] <- as.numeric(chain1$k == j-1)
+  chain1quantities[,j] <- as.numeric(chain1.k == j-1)
 }
 chain1means <- apply(chain1quantities, 2, mean)
 chain1var <- batchmeans(chain1quantities)

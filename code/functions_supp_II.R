@@ -20,8 +20,7 @@ lpost.density <- function(X.full, beta.full, y, u, tau, a.pr, sigma.pr) {
 # 1-2*jumppar: lowest probability of conducting an update move.
 robust.mcmc <- function(chainlength, k.ini, a.ini, b.ini, tau.ini,
                         X, y, y.start, prior.k, prior.a = 1, prior.scale,
-                        jumppar = 1/3, silent = FALSE
-) {
+                        jumppar = 1/3) {
   n <- nrow(X)
   p <- ncol(X)
   kmax <- length(prior.k)-1
@@ -75,11 +74,7 @@ robust.mcmc <- function(chainlength, k.ini, a.ini, b.ini, tau.ini,
   
   # MCMC algorithm
   for (t in 2:(chainlength+1)) {
-    
-    if (silent==FALSE) {
-      if ((t-1)%%1000 == 0) print(t-1)
-    }
-    
+
     k.current <- models[t-1]
     Xfull.current <- X.full[, 1:(p+k.current), drop=FALSE]
     b.current <- bvector[t-1,]

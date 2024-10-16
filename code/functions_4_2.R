@@ -69,8 +69,6 @@ probit.mcmc <- function(chainlength, k.ini, a.ini, b.ini,
   # MCMC algorithm
   for (t in 2:(chainlength+1)) {
     
-    if ((t-1)%%1000 == 0) print(t-1)
-    
     k.current <- models[t-1,]
     Ik.current <- sum(k.current)
     a.current <- intercepts[t-1]

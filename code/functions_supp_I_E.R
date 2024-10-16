@@ -107,7 +107,6 @@ get.coverage.rate <- function(len,trialrep,alpha,kmax,Zksize) {
       }
     }
     
-    print(i)
   }
   
   output[,4:5] <- output[,4:5]/trialrep
