@@ -439,8 +439,9 @@ tau.ini <- rexp(1,1)
 ```
 
 The following code chunk simulates the chain. We only need the component $K(t)$.
-# Markov chain simulation
+
 ```{r eval=F}
+# Markov chain simulation
 set.seed(12)
 chainlen <- 4e5
 chain1 <- robust.mcmc(chainlen, k.ini, a.ini, b.ini, tau.ini,
@@ -449,7 +450,7 @@ chain1 <- robust.mcmc(chainlen, k.ini, a.ini, b.ini, tau.ini,
 chain1.k <- chain1$k
 ```
 
-To save time, a copy of the simulated chain is loaded.
+To save time, the $K(t)$ component of a copy of the simulated chain is loaded.
 ```{r}
 load("../output/chain.robust.RData")
 ```
