@@ -1,9 +1,7 @@
 This repository contains the R code for reproducing the computational results in the paper "Geometric ergodicity of trans-dimensional Markov chain Monte Carlo algorithms."
 
-You can find a file `Reproduce.pdf` in the main directory that contains instructions for reproducing the results.
-
 The core code is contained in the R Markdown file `Reproduce.Rmd` in the `code` folder.
-It takes several minutes to knit the file.
+It takes several minutes to knit.
 
 The data sets used in the paper and code are stored in the `data` folder.
 
