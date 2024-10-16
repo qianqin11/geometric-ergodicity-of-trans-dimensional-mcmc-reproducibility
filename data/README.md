@@ -1,6 +1,6 @@
 Data sets:
 
-Spambase.csv:
+spambase.csv:
 Hopkins, M., Reeber, E., Forman, G., & Suermondt, J. (1999). Spambase [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C53G6X.
 
 Galaxy.txt:
