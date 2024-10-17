@@ -30,7 +30,9 @@ library(MASS)
 
 ## First plot in Figure 1
 
-Let $k_{\scriptsize\mbox{max}} = 15$, and let $n = 5, 10, ..., 40$. Below we calculate the true values and bounds for $\|P\|_{\Pi}$. We will rely on functions in the file "functions_4_1.R".
+Let $k_{\scriptsize\mbox{max}} = 15$, and let $n = 5, 10, ..., 40$. 
+Below we calculate the true values and bounds for $\|P\|_{\Pi}$. 
+We will rely on functions in the file "functions_4_1.R".
 
 ```{r}
 source("functions_4_1.R", local = knitr::knit_global())
@@ -116,7 +118,8 @@ p.numeric.kmax
 ## Third plot in Figure 1
 
 This plot compares the bounds on $1-\|P\|_{\Pi}$ produced by equations (4) and (5) in the manuscript. 
-Let $k_{\scriptsize\mbox{max}} = 5, 10, ..., 40$, and let $n = 15$. We calculate the bounds for $\|P\|_{\Pi}$ via the two equations.
+Let $k_{\scriptsize\mbox{max}} = 5, 10, ..., 40$, and let $n = 15$. 
+We calculate the bounds for $\|P\|_{\Pi}$ via the two equations.
 
 ```{r Figure 1-3}
 Zksize <- 15
@@ -372,9 +375,11 @@ p.mix.k
 
 
 # Supplement I-E
-This section contains the code for reproducin Table A in Section E of Supplement I. In this section, we compute the empirical coverage probability for a toy MCMC algorithm.
+This section contains the code for reproducin Table A in Section E of Supplement I. 
+In this section, we compute the empirical coverage probability for a toy MCMC algorithm.
 
-Some functions from "functions_supp_I_E.R" are needed. The file contains a function that simulates the toy chain, and a function `get.coverage.rate` that calculates the empirical coverage rates through repeated simulations.
+Some functions from "functions_supp_I_E.R" are needed. 
+The file contains a function that simulates the toy chain, and a function `get.coverage.rate` that calculates the empirical coverage rates through repeated simulations.
 ```{r}
 source("functions_supp_I_E.R", local = knitr::knit_global())
 ```
